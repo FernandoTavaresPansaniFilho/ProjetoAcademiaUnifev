@@ -1,0 +1,1102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  
+  /* Variáveis CSS para cores e estilos globais */
+  :root {
+    --cor-primaria: #4f46e5;        /* Azul principal do sistema */
+    --cor-primaria-claro: #c7d2fe;  /* Azul claro para textos */
+    --fundo: #f9fafb;               /* Cor de fundo padrão */
+    --texto-principal: #374151;     /* Cor do texto principal */
+    --texto-secundario: #6b7280;    /* Cor do texto secundário */
+    --bordas-radius: 12px;          /* Raio das bordas arredondadas */
+    --fonte: 'Inter', sans-serif;   /* Fonte padrão do sistema */
+    --cor-laranja: #f97316;         /* Cor laranja para hover e destaque */
+    --cor-sucesso: #10b981;         /* Verde para status de sucesso */
+    --cor-aviso: #f59e0b;           /* Amarelo para avisos */
+    --cor-admin: #7c3aed;           /* Roxo para área administrativa */
+  }
+
+  /* Reset básico para todos os elementos */
+  * { box-sizing: border-box; }
+
+  /* Estilo do corpo da página com imagem de fundo */
+  body {
+    margin: 0; 
+    font-family: var(--fonte);
+    /* Gradiente escuro sobre a imagem de fundo da academia */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://www.unifev.edu.br/material2/site_files/multimidia/imagem/Academia.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    color: var(--texto-principal); 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+  }
+
+  /* Cabeçalho principal do sistema - Adaptável para todas as telas */
+  header {
+    background: var(--cor-primaria); 
+    color: white; 
+    padding: 1rem 1.5rem;
+    font-weight: 700; 
+    font-size: 1.8rem; 
+    text-align: center; 
+    user-select: none;
+    letter-spacing: 0.05em; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 6px; 
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  header .unifev { color: white; font-weight: 700; }
+  header .academia { margin-right: 4px; font-weight: 700; }
+
+  /* Header específico para dashboard administrativo */
+  .admin-header {
+    background: linear-gradient(135deg, var(--cor-admin), var(--cor-primaria));
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .admin-header .admin-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .admin-header .admin-user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    font-size: 0.9rem;
+  }
+
+  .admin-header .admin-user-info .user-avatar {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  /* Área principal do conteúdo */
+  main { 
+    flex: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 2rem 1rem; 
+  }
+  
+  /* Containers para diferentes tipos de conteúdo */
+  .container { 
+    max-width: 450px; 
+    width: 100%; 
+    padding: 2rem; 
+    text-align: center; 
+  }
+  .container-grande { 
+    max-width: 800px; 
+    width: 100%; 
+    padding: 2rem; 
+    text-align: left; 
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+  }
+  .container-admin { 
+    max-width: 1200px; 
+    width: 100%; 
+    padding: 2rem; 
+    text-align: left; 
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+  }
+
+  /* Estilos para títulos e cabeçalhos */
+  h1,h2,h3, .heading-style {
+    margin-top: 0; 
+    margin-bottom: 1rem; 
+    color: white; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+    font-weight: 700;
+  }
+  .container-grande h2, .container-grande h3, .container-grande h4, 
+  .container-admin h2, .container-admin h3, .container-admin h4 { 
+    color: var(--cor-primaria-claro); 
+  }
+  .container-grande p, .container-grande label, 
+  .container-admin p, .container-admin label { 
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7); 
+  }
+
+  /* Grupo de botões verticais */
+  .button-group { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+    margin: 2rem 0; 
+  }
+  
+  /* Estilos para botões */
+  button {
+    background-color: var(--cor-primaria); 
+    color: white; 
+    font-weight: 700; 
+    border: none;
+    border-radius: var(--bordas-radius); 
+    padding: 0.75rem 1rem; 
+    font-size: 1.1rem; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover { background-color: var(--cor-laranja); }
+  
+  /* Variações de botões por tipo */
+  button.btn-secundario { background-color: var(--texto-secundario); }
+  button.btn-secundario:hover { background-color: var(--texto-principal); }
+  button.btn-sucesso { background-color: var(--cor-sucesso); }
+  button.btn-aviso { background-color: var(--cor-aviso); }
+
+  /* Estilos para formulários */
+  form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+    text-align: left; 
+    margin-top: 1rem; 
+  }
+  label { 
+    font-weight: 600; 
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+  }
+  
+  /* Campos de entrada (input, select, textarea) */
+  input, select, textarea {
+    padding: 0.75rem; 
+    font-size: 1rem; 
+    border-radius: var(--bordas-radius);
+    border: 1.8px solid #cbd5e1; 
+    outline-offset: 2px; 
+    transition: border-color 0.3s ease; 
+    font-family: var(--fonte);
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  input:focus, select:focus, textarea:focus { 
+    border-color: var(--cor-primaria); 
+    background-color: white; 
+  }
+  input.error { border-color: #ef4444; }
+
+  /* Mensagens de feedback para o usuário */
+  .feedback-msg {
+    color: white; 
+    font-weight: 600; 
+    margin-top: 1rem; 
+    min-height: 1.5em; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  /* === ESTILOS DO DASHBOARD ADMINISTRATIVO === */
+  
+  /* Navegação do painel administrativo - Responsiva */
+  .admin-nav {
+    display: flex; 
+    gap: 1rem; 
+    margin-bottom: 2rem; 
+    flex-wrap: wrap;
+    background: rgba(0,0,0,0.2);
+    padding: 1rem;
+    border-radius: var(--bordas-radius);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .admin-nav button {
+    padding: 0.7rem 1.2rem; 
+    font-size: 0.9rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+    white-space: nowrap;
+  }
+  .admin-nav button.active {
+    background-color: var(--cor-admin);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    transform: translateY(-2px);
+  }
+  .admin-nav button:not(.active):hover {
+    background-color: rgba(124, 58, 237, 0.7);
+    transform: translateY(-1px);
+  }
+
+  /* Breadcrumb para navegação administrativa */
+  .admin-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0,0,0,0.2);
+    border-radius: var(--bordas-radius);
+    font-size: 0.9rem;
+    color: var(--cor-primaria-claro);
+  }
+  .admin-breadcrumb .separator {
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Grid de estatísticas do dashboard */
+  .admin-stats {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 1rem; 
+    margin-bottom: 2rem;
+  }
+  .stat-card {
+    background: rgba(0,0,0,0.3); 
+    padding: 1.5rem; 
+    border-radius: var(--bordas-radius); 
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 2rem; 
+    font-weight: 700; 
+    color: var(--cor-primaria-claro);
+  }
+  .stat-label {
+    color: white; 
+    margin-top: 0.5rem;
+  }
+
+  /* Tabelas administrativas */
+  .admin-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    background: rgba(0,0,0,0.3); 
+    border-radius: var(--bordas-radius); 
+    overflow: hidden;
+  }
+  .admin-table th, .admin-table td {
+    padding: 1rem; 
+    text-align: left; 
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .admin-table th {
+    background: rgba(0,0,0,0.5); 
+    color: var(--cor-primaria-claro); 
+    font-weight: 600;
+  }
+  .admin-table td {
+    color: white;
+  }
+  .admin-table tr:hover {
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* Badges de status */
+  .status-badge {
+    padding: 0.25rem 0.5rem; 
+    border-radius: 4px; 
+    font-size: 0.8rem; 
+    font-weight: 600;
+  }
+  .status-ativo { background: var(--cor-sucesso); color: white; }
+  .status-inativo { background: var(--texto-secundario); color: white; }
+  .status-pendente { background: var(--cor-aviso); color: white; }
+
+  /* Caixa de pesquisa */
+  .search-box {
+    margin-bottom: 1rem; 
+    padding: 0.75rem; 
+    width: 100%; 
+    max-width: 300px;
+  }
+
+  /* Cards de conteúdo */
+  .content-card {
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+    padding: 1.5rem; 
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .content-card h4 {
+    color: var(--cor-primaria-claro); 
+    margin-top: 0; 
+    margin-bottom: 1rem;
+  }
+
+  /* Estilos para modais */
+  .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1001; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); 
+    justify-content: center; 
+    align-items: center;
+  }
+  .modal-content {
+    background-color: #fefefe; 
+    margin: auto; 
+    padding: 20px; 
+    border: 1px solid #888; 
+    width: 80%; 
+    max-width: 500px; 
+    border-radius: var(--bordas-radius); 
+    position: relative;
+  }
+  .close-button {
+    color: #aaa; 
+    float: right; 
+    font-size: 28px; 
+    font-weight: bold; 
+    position: absolute; 
+    top: 10px; 
+    right: 20px;
+  }
+  .close-button:hover, .close-button:focus {
+    color: black; 
+    text-decoration: none; 
+    cursor: pointer;
+  }
+
+  /* Estilos para o toast de notificação */
+  .toast-container {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 2000;
+  }
+  .toast {
+    background-color: #333; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out;
+  }
+  .toast.show { opacity: 1; }
+  .toast.success { background-color: var(--cor-sucesso); }
+  .toast.error { background-color: #ef4444; }
+
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    header { 
+      font-size: 1.5rem; 
+      padding: 0.8rem 1rem; 
+    }
+    .admin-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .admin-nav {
+      flex-direction: column;
+    }
+    .admin-nav button {
+      width: 100%;
+    }
+    main { 
+      padding: 1rem; 
+    }
+    .container, .container-grande, .container-admin {
+      padding: 1.5rem;
+    }
+    .admin-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header { 
+      font-size: 1.2rem; 
+      padding: 0.6rem 0.8rem; 
+    }
+    .admin-header .admin-title {
+      font-size: 1.2rem;
+    }
+    .admin-nav button {
+      font-size: 0.8rem;
+    }
+    .admin-table th, .admin-table td {
+      padding: 0.8rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Estilos específicos para o formulário de login */
+  .login-form-container {
+    background: rgba(255, 255, 255, 0.15); /* Fundo translúcido */
+    backdrop-filter: blur(10px); /* Efeito de desfoque */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+    border-radius: var(--bordas-radius); 
+    padding: 2.5rem; 
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Sombra elegante */
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+    max-width: 400px; 
+    width: 90%; 
+    text-align: center;
+  }
+
+  .login-form-container h2 {
+    color: white; 
+    margin-bottom: 1.5rem; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  }
+
+  .login-form-container label {
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  }
+
+  .login-form-container input[type="text"], 
+  .login-form-container input[type="password"] {
+    width: 100%; 
+    padding: 0.8rem; 
+    border: none; 
+    border-radius: 8px; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    color: var(--texto-principal);
+  }
+
+  .login-form-container input[type="text"]::placeholder, 
+  .login-form-container input[type="password"]::placeholder {
+    color: var(--texto-secundario);
+  }
+
+  .login-form-container button {
+    width: 100%; 
+    padding: 0.9rem; 
+    font-size: 1.1rem; 
+    background-color: var(--cor-laranja); 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+  }
+
+  .login-form-container button:hover {
+    background-color: #e06400; /* Laranja mais escuro no hover */
+  }
+
+  .login-form-container .feedback-msg {
+    color: #ffdddd; 
+    font-weight: 600; 
+    margin-top: 1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  }
+
+  /* Estilos para o footer */
+  footer {
+    background: rgba(0, 0, 0, 0.7); 
+    color: white; 
+    text-align: center; 
+    padding: 1rem; 
+    font-size: 0.9rem; 
+    margin-top: auto; 
+    flex-shrink: 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+  }
+
+  footer a {
+    color: var(--cor-primaria-claro); 
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Estilos para o dashboard de alunos */
+  .student-dashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .student-card {
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+    padding: 1.5rem; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .student-card h3 {
+    color: var(--cor-laranja); 
+    margin-top: 0; 
+    margin-bottom: 1rem;
+  }
+
+  .student-info p {
+    color: white; 
+    margin-bottom: 0.5rem;
+  }
+
+  .student-info strong {
+    color: var(--cor-primaria-claro);
+  }
+
+  .progress-bar-container {
+    background-color: rgba(255,255,255,0.2); 
+    border-radius: 5px; 
+    height: 10px; 
+    margin-top: 1rem;
+  }
+
+  .progress-bar {
+    height: 100%; 
+    width: 0%; 
+    background-color: var(--cor-sucesso); 
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .workout-list ul {
+    list-style: none; 
+    padding: 0;
+  }
+
+  .workout-list li {
+    background: rgba(255,255,255,0.05); 
+    border-left: 4px solid var(--cor-primaria); 
+    margin-bottom: 0.5rem; 
+    padding: 0.8rem; 
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .workout-list li span {
+    color: white;
+  }
+
+  .workout-list li .status-badge {
+    font-size: 0.7rem;
+  }
+
+  .attendance-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 1rem;
+  }
+
+  .calendar-day {
+    background: rgba(255,255,255,0.05); 
+    padding: 0.5rem; 
+    border-radius: 5px; 
+    text-align: center; 
+    color: white;
+  }
+
+  .calendar-day.present {
+    background-color: var(--cor-sucesso); 
+    font-weight: 700;
+  }
+
+  .calendar-day.future {
+    opacity: 0.5;
+  }
+
+  /* Estilos para o dashboard do professor */
+  .teacher-dashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .teacher-card {
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+    padding: 1.5rem; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .teacher-card h3 {
+    color: var(--cor-primaria-claro); 
+    margin-top: 0; 
+    margin-bottom: 1rem;
+  }
+
+  .teacher-info p {
+    color: white; 
+    margin-bottom: 0.5rem;
+  }
+
+  .teacher-info strong {
+    color: var(--cor-laranja);
+  }
+
+  .student-performance-list ul {
+    list-style: none; 
+    padding: 0;
+  }
+
+  .student-performance-list li {
+    background: rgba(255,255,255,0.05); 
+    border-left: 4px solid var(--cor-laranja); 
+    margin-bottom: 0.5rem; 
+    padding: 0.8rem; 
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .student-performance-list li span {
+    color: white;
+  }
+
+  .student-performance-list li .progress-bar-small {
+    height: 8px; 
+    width: 50px; 
+    background-color: rgba(255,255,255,0.2); 
+    border-radius: 4px;
+  }
+
+  .student-performance-list li .progress-fill {
+    height: 100%; 
+    width: 70%; /* Exemplo */ 
+    background-color: var(--cor-sucesso); 
+    border-radius: 4px;
+  }
+
+  .student-performance-list li .performance-score {
+    color: var(--cor-sucesso); 
+    font-weight: 700;
+  }
+
+  /* Estilos para o dashboard de admin */
+  .admin-dashboard-grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 1.5rem;
+  }
+
+  .admin-dashboard-card {
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+    padding: 1.5rem; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .admin-dashboard-card h3 {
+    color: var(--cor-admin); 
+    margin-top: 0; 
+    margin-bottom: 1rem;
+  }
+
+  .admin-dashboard-card .metric-value {
+    font-size: 2rem; 
+    font-weight: 700; 
+    color: var(--cor-primaria-claro);
+  }
+
+  .admin-dashboard-card .metric-label {
+    color: white; 
+    margin-top: 0.5rem;
+  }
+
+  .admin-dashboard-card .action-list ul {
+    list-style: none; 
+    padding: 0;
+  }
+
+  .admin-dashboard-card .action-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .admin-dashboard-card .action-list button {
+    width: 100%; 
+    padding: 0.6rem; 
+    font-size: 0.9rem; 
+    border-radius: 6px;
+  }
+
+  /* Estilos para a seção de gerenciamento de usuários */
+  .user-management-section .user-item {
+    background: rgba(255,255,255,0.05); 
+    border-left: 4px solid var(--cor-admin); 
+    margin-bottom: 0.8rem; 
+    padding: 1rem; 
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .user-management-section .user-info {
+    color: white;
+  }
+
+  .user-management-section .user-actions button {
+    margin-left: 0.5rem; 
+    padding: 0.5rem 1rem; 
+    font-size: 0.8rem; 
+    border-radius: 5px;
+  }
+
+  /* Estilos para a seção de gerenciamento de treinos */
+  .workout-management-section .workout-item {
+    background: rgba(255,255,255,0.05); 
+    border-left: 4px solid var(--cor-laranja); 
+    margin-bottom: 0.8rem; 
+    padding: 1rem; 
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .workout-management-section .workout-info {
+    color: white;
+  }
+
+  .workout-management-section .workout-actions button {
+    margin-left: 0.5rem; 
+    padding: 0.5rem 1rem; 
+    font-size: 0.8rem; 
+    border-radius: 5px;
+  }
+
+  /* Estilos para a seção de gerenciamento de planos */
+  .plan-management-section .plan-item {
+    background: rgba(255,255,255,0.05); 
+    border-left: 4px solid var(--cor-sucesso); 
+    margin-bottom: 0.8rem; 
+    padding: 1rem; 
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .plan-management-section .plan-info {
+    color: white;
+  }
+
+  .plan-management-section .plan-actions button {
+    margin-left: 0.5rem; 
+    padding: 0.5rem 1rem; 
+    font-size: 0.8rem; 
+    border-radius: 5px;
+  }
+
+  /* Estilos para a seção de relatórios */
+  .reports-section .report-card {
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+    padding: 1.5rem; 
+    margin-bottom: 1rem;
+  }
+
+  .reports-section .report-card h4 {
+    color: var(--cor-primaria-claro); 
+    margin-top: 0; 
+    margin-bottom: 1rem;
+  }
+
+  .reports-section .report-card p {
+    color: white;
+  }
+
+  .reports-section .report-card button {
+    margin-top: 1rem; 
+    width: auto; 
+    padding: 0.7rem 1.2rem;
+  }
+
+  /* Estilos para o formulário de cadastro de aluno */
+  .cadastro-aluno-form .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .cadastro-aluno-form .form-group label {
+    margin-bottom: 0.5rem;
+  }
+
+  .cadastro-aluno-form .form-group input, 
+  .cadastro-aluno-form .form-group select {
+    width: 100%;
+  }
+
+  .cadastro-aluno-form .form-actions {
+    display: flex; 
+    gap: 1rem; 
+    margin-top: 1.5rem;
+  }
+
+  .cadastro-aluno-form .form-actions button {
+    flex: 1;
+  }
+
+  /* Estilos para o formulário de cadastro de professor */
+  .cadastro-professor-form .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .cadastro-professor-form .form-group label {
+    margin-bottom: 0.5rem;
+  }
+
+  .cadastro-professor-form .form-group input, 
+  .cadastro-professor-form .form-group select {
+    width: 100%;
+  }
+
+  .cadastro-professor-form .form-actions {
+    display: flex; 
+    gap: 1rem; 
+    margin-top: 1.5rem;
+  }
+
+  .cadastro-professor-form .form-actions button {
+    flex: 1;
+  }
+
+  /* Estilos para o formulário de cadastro de treino */
+  .cadastro-treino-form .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .cadastro-treino-form .form-group label {
+    margin-bottom: 0.5rem;
+  }
+
+  .cadastro-treino-form .form-group input, 
+  .cadastro-treino-form .form-group select, 
+  .cadastro-treino-form .form-group textarea {
+    width: 100%;
+  }
+
+  .cadastro-treino-form .form-actions {
+    display: flex; 
+    gap: 1rem; 
+    margin-top: 1.5rem;
+  }
+
+  .cadastro-treino-form .form-actions button {
+    flex: 1;
+  }
+
+  /* Estilos para o formulário de cadastro de plano */
+  .cadastro-plano-form .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .cadastro-plano-form .form-group label {
+    margin-bottom: 0.5rem;
+  }
+
+  .cadastro-plano-form .form-group input, 
+  .cadastro-plano-form .form-group select, 
+  .cadastro-plano-form .form-group textarea {
+    width: 100%;
+  }
+
+  .cadastro-plano-form .form-actions {
+    display: flex; 
+    gap: 1rem; 
+    margin-top: 1.5rem;
+  }
+
+  .cadastro-plano-form .form-actions button {
+    flex: 1;
+  }
+
+  /* Estilos para a tabela de listagem de alunos */
+  #listaAlunosTable {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 1rem;
+  }
+
+  #listaAlunosTable th, #listaAlunosTable td {
+    border: 1px solid rgba(255,255,255,0.1); 
+    padding: 8px; 
+    text-align: left; 
+    color: white;
+  }
+
+  #listaAlunosTable th {
+    background-color: rgba(0,0,0,0.5); 
+    color: var(--cor-primaria-claro);
+  }
+
+  #listaAlunosTable tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  #listaAlunosTable tr:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  #listaAlunosTable .actions button {
+    margin-right: 5px; 
+    padding: 5px 10px; 
+    font-size: 0.8rem;
+  }
+
+  /* Estilos para a tabela de listagem de professores */
+  #listaProfessoresTable {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 1rem;
+  }
+
+  #listaProfessoresTable th, #listaProfessoresTable td {
+    border: 1px solid rgba(255,255,255,0.1); 
+    padding: 8px; 
+    text-align: left; 
+    color: white;
+  }
+
+  #listaProfessoresTable th {
+    background-color: rgba(0,0,0,0.5); 
+    color: var(--cor-primaria-claro);
+  }
+
+  #listaProfessoresTable tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  #listaProfessoresTable tr:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  #listaProfessoresTable .actions button {
+    margin-right: 5px; 
+    padding: 5px 10px; 
+    font-size: 0.8rem;
+  }
+
+  /* Estilos para a tabela de listagem de treinos */
+  #listaTreinosTable {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 1rem;
+  }
+
+  #listaTreinosTable th, #listaTreinosTable td {
+    border: 1px solid rgba(255,255,255,0.1); 
+    padding: 8px; 
+    text-align: left; 
+    color: white;
+  }
+
+  #listaTreinosTable th {
+    background-color: rgba(0,0,0,0.5); 
+    color: var(--cor-primaria-claro);
+  }
+
+  #listaTreinosTable tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  #listaTreinosTable tr:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  #listaTreinosTable .actions button {
+    margin-right: 5px; 
+    padding: 5px 10px; 
+    font-size: 0.8rem;
+  }
+
+  /* Estilos para a tabela de listagem de planos */
+  #listaPlanosTable {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 1rem;
+  }
+
+  #listaPlanosTable th, #listaPlanosTable td {
+    border: 1px solid rgba(255,255,255,0.1); 
+    padding: 8px; 
+    text-align: left; 
+    color: white;
+  }
+
+  #listaPlanosTable th {
+    background-color: rgba(0,0,0,0.5); 
+    color: var(--cor-primaria-claro);
+  }
+
+  #listaPlanosTable tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  #listaPlanosTable tr:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  #listaPlanosTable .actions button {
+    margin-right: 5px; 
+    padding: 5px 10px; 
+    font-size: 0.8rem;
+  }
+
+  /* Estilos para o gráfico de desempenho */
+  #performanceChartContainer {
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+    padding: 1.5rem; 
+    margin-top: 1.5rem;
+  }
+
+  #performanceChart {
+    max-width: 100%; 
+    height: auto;
+  }
+
+  /* Estilos para o card de feedback */
+  .feedback-card {
+    background: rgba(255,255,255,0.1); 
+    border-radius: var(--bordas-radius); 
+    padding: 1.5rem; 
+    margin-top: 1.5rem;
+  }
+
+  .feedback-card textarea {
+    width: 100%; 
+    min-height: 100px; 
+    margin-bottom: 1rem;
+  }
+
+  .feedback-card button {
+    width: auto; 
+    padding: 0.7rem 1.2rem;
+  }

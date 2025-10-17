@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Academia Unifev - Sistema</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<header aria-label="Cabeçalho do site">
+  <span class="academia">Academia</span><span class="unifev">Unifev</span>
+</header>
+
+<main>
+  <section id="landing-page" class="view active" aria-label="Página inicial">
+    <div class="container">
+      <h1>Bem-vindo à Academia Unifev</h1>
+      <div class="button-group">
+        <button id="btn-entrar-aluno" aria-describedby="descEntrarAluno">Entrar como Aluno</button>
+        <button id="btn-entrar-instrutor" aria-describedby="descEntrarInstrutor">Entrar como Instrutor</button>
+        <button id="btn-entrar-admin">Área Administrativa</button>
+        <button id="btn-cadastrar">Cadastrar-se</button>
+      </div>
+      <p id="descEntrarAluno" class="sr-only">Clique para acessar sua área de aluno.</p>
+      <p id="descEntrarInstrutor" class="sr-only">Clique para acessar sua área de instrutor.</p>
+    </div>
+  </section>
+
+  <section id="admin-login-view" class="view" aria-label="Login administrativo">
+    <div class="container">
+      <h2>Acesso Administrativo</h2>
+      <form id="form-admin-login">
+        <label for="admin-usuario-login">Usuário</label>
+        <input type="text" id="admin-usuario-login" required autocomplete="username" />
+        <label for="admin-senha-login">Senha</label>
+        <input type="password" id="admin-senha-login" required autocomplete="current-password" />
+        <button type="submit">Entrar</button>
+        <button type="button" class="btn-voltar" data-targetview="landing-page">Voltar</button>
+      </form>
+      <div id="feedback-admin-login" class="feedback-msg"></div>
+    </div>
+  </section>
+
+  <section id="admin-dashboard-view" class="view" aria-label="Dashboard administrativo">
+    <div class="container-admin">
+      <div class="admin-header">
+        <div class="admin-title">Dashboard Administrativo</div>
+        <div class="admin-user-info">
+          <div class="user-avatar">A</div>
+          <span>Administrador</span>
+        </div>
+      </div>
+      
+      <div class="admin-breadcrumb">
+        <span>Painel</span>
+        <span class="separator">›</span>
+        <span id="current-section">Dashboard</span>
+      </div>
+      
+      <div class="admin-nav">
+        <button id="btn-admin-dashboard" class="active">📊 Dashboard</button>
+        <button id="btn-admin-alunos">👥 Alunos</button>
+        <button id="btn-admin-instrutores">🏋️ Instrutores</button>
+        <button id="btn-admin-contatos">📞 Contatos</button>
+      </div>
+
+      <div id="admin-dashboard-content">
+        <div class="admin-stats">
+          <div class="stat-card">
+            <div class="stat-number" id="stat-total-alunos">0</div>
+            <div class="stat-label">Total de Alunos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-total-instrutores">0</div>
+            <div class="stat-label">Total de Instrutores</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-anamneses-pendentes">0</div>
+            <div class="stat-label">Anamneses Pendentes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-alunos-ativos">0</div>
+            <div class="stat-label">Alunos Ativos</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="admin-alunos-content" style="display: none;">
+        <h3>Gerenciamento de Alunos</h3>
+        <input type="text" id="search-alunos" class="search-box" placeholder="Buscar aluno por nome, ID ou email...">
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Anamnese</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="admin-alunos-tbody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admin-instrutores-content" style="display: none;">
+        <h3>Gerenciamento de Instrutores</h3>
+        <input type="text" id="search-instrutores" class="search-box" placeholder="Buscar instrutor por nome, ID ou email...">
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Especialidade</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="admin-instrutores-tbody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admin-contatos-content" style="display: none;">
+        <h3>Lista de Contatos</h3>
+        <input type="text" id="search-contatos" class="search-box" placeholder="Buscar contato...">
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="admin-contatos-tbody">
+            </tbody>
+          </table>
+        </div>
+        <button id="btn-exportar-contatos" style="margin-top: 1rem;">📥 Exportar Contatos</button>
+      </div>
+
+      <button id="btn-logout-admin" class="logout-btn">🚪 Sair</button>
+    </div>
+  </section>
+
+  <section id="aluno-login-view" class="view" aria-label="Login do aluno">
+    <div class="container">
+      <h2>Entrar como Aluno</h2>
+      <form id="form-aluno-login">
+        <label for="aluno-id-login">ID de Aluno</label>
+        <input type="number" id="aluno-id-login" required autocomplete="off" placeholder="Seu ID numérico" />
+        <label for="aluno-senha-login">Senha</label>
+        <input type="password" id="aluno-senha-login" required autocomplete="current-password" />
+        <button type="submit">Entrar</button>
+        <button type="button" class="btn-voltar" data-targetview="landing-page">Voltar</button>
+      </form>
+      <div id="feedback-msg" class="feedback-msg"></div>
+    </div>
+  </section>
+
+  <section id="instrutor-login-view" class="view" aria-label="Login do instrutor">
+    <div class="container">
+      <h2>Entrar como Instrutor</h2>
+      <form id="form-instrutor-login">
+        <label for="instrutor-id-login">ID de Instrutor</label>
+        <input type="number" id="instrutor-id-login" required autocomplete="off" placeholder="Seu ID numérico" />
+        <label for="instrutor-senha-login">Senha</label>
+        <input type="password" id="instrutor-senha-login" required autocomplete="current-password" />
+        <button type="submit">Entrar</button>
+        <button type="button" class="btn-voltar" data-targetview="landing-page">Voltar</button>
+      </form>
+      <div id="feedback-msg-instrutor" class="feedback-msg"></div>
+    </div>
+  </section>
+
+  <section id="cadastro-escolha-view" class="view" aria-label="Escolha de cadastro">
+    <div class="container">
+      <h2>Cadastro</h2>
+      <p class="heading-style">Escolha o tipo de conta:</p>
+      <div class="button-group">
+        <button id="btn-tipo-cad-aluno">Cadastrar Aluno</button>
+        <button id="btn-tipo-cad-instrutor">Cadastrar Instrutor</button>
+      </div>
+      <button type="button" class="btn-voltar" data-targetview="landing-page">Voltar</button>
+    </div>
+  </section>
+
+  <section id="cadastro-aluno-view" class="view" aria-label="Cadastro do aluno">
+    <div class="container">
+      <h2>Cadastro de Aluno</h2>
+      <form id="form-cadastro-aluno">
+        <label for="cad-aluno-nome">Nome Completo</label>
+        <input type="text" id="cad-aluno-nome" required />
+        <label for="cad-aluno-senha">Senha</label>
+        <input type="password" id="cad-aluno-senha" required />
+        <label for="cad-aluno-tel">Telefone</label>
+        <input type="tel" id="cad-aluno-tel" required placeholder="(11) 99999-9999" />
+        <label for="cad-aluno-email">Email</label>
+        <input type="email" id="cad-aluno-email" required />
+        <button type="submit">Cadastrar</button>
+        <button type="button" class="btn-voltar" data-targetview="cadastro-escolha-view">Voltar</button>
+      </form>
+      <div id="feedback-cad-aluno" class="feedback-msg"></div>
+    </div>
+  </section>
+
+  <section id="cadastro-instrutor-view" class="view" aria-label="Cadastro do instrutor">
+    <div class="container">
+      <h2>Cadastro de Instrutor</h2>
+      <form id="form-cadastro-instrutor">
+        <label for="cad-instrutor-nome">Nome Completo</label>
+        <input type="text" id="cad-instrutor-nome" required />
+        <label for="cad-instrutor-senha">Senha</label>
+        <input type="password" id="cad-instrutor-senha" required />
+        <label for="cad-instrutor-tel">Telefone</label>
+        <input type="tel" id="cad-instrutor-tel" required placeholder="(11) 99999-9999" />
+        <label for="cad-instrutor-email">Email</label>
+        <input type="email" id="cad-instrutor-email" required />
+        <label for="cad-instrutor-especialidade">Especialidade</label>
+        <input type="text" id="cad-instrutor-especialidade" placeholder="Ex: Musculação, Pilates, Funcional..." />
+        <button type="submit">Cadastrar</button>
+        <button type="button" class="btn-voltar" data-targetview="cadastro-escolha-view">Voltar</button>
+      </form>
+      <div id="feedback-cad-instrutor" class="feedback-msg"></div>
+    </div>
+  </section>
+
+  <section id="aluno-anamnese-pendente-view" class="view" aria-label="Anamnese pendente">
+    <div class="container">
+      <h2>Anamnese Necessária</h2>
+      <div style="text-align: center; padding: 2rem 0;">
+        <p id="msg-anamnese-status" style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.6;">Você precisa realizar uma anamnese com um instrutor. Sua solicitação está pendente.</p>
+        <button id="btn-solicitar-anamnese" style="padding: 1rem 2rem; font-size: 1.1rem; min-width: 200px; margin: 0 auto; display: block;">Solicitar Anamnese</button>
+        <div id="feedback-anamnese" class="feedback-msg" style="margin-top: 1rem;"></div>
+      </div>
+      <button id="btn-logout-anamnese" class="logout-btn" style="margin-top: 2rem;">Sair</button>
+    </div>
+  </section>
+
+  <section id="plano-treino-view" class="view" aria-label="Área do Plano de Treino">
+    <div class="container-grande" id="plano-area">
+      <h2 id="plano-treino-titulo">Plano de Treino</h2>
+      <p id="user-greeting"></p>
+      
+      <div id="aluno-plano-content">
+        <p id="plano-descricao-geral-display">Carregando descrição do plano...</p>
+        <div id="plano-exercicios-segmentado-display">
+        </div>
+      </div>
+
+      <div id="instrutor-dashboard-content" style="display:none;">
+        <div id="feedback-geral-instrutor" class="feedback-msg"></div>
+        
+        <div class="instrutor-secao" id="anamneses-pendentes-section">
+          <div class="secao-header">
+            <h3>📋 Anamneses Pendentes</h3>
+            <p class="secao-descricao">Alunos aguardando liberação para treinar</p>
+          </div>
+          <ul id="lista-anamneses-pendentes" class="lista-limpa"></ul>
+          <div id="form-realizar-anamnese-container" style="display:none;" class="form-anamnese">
+            <h4>Realizar Anamnese para: <span id="nome-aluno-anamnese"></span></h4>
+            <form id="form-realizar-anamnese">
+              <label for="obs-anamnese">Observações da Anamnese (opcional):</label>
+              <textarea id="obs-anamnese" rows="4" placeholder="Condições de saúde, histórico de lesões, objetivos..."></textarea>
+              <div class="form-actions">
+                <button type="submit" class="btn-sucesso">Concluir Anamnese</button>
+                <button type="button" class="btn-secundario" id="btn-cancelar-anamnese">Cancelar</button>
+              </div>
+            </form>
+            <div id="feedback-anamnese-form" class="feedback-msg"></div>
+          </div>
+        </div>
+
+        <div class="instrutor-secao" id="alunos-aprovados-section">
+          <div class="secao-header">
+            <h3>✅ Alunos Aprovados</h3>
+            <p class="secao-descricao">Alunos prontos para receberem planos de treino</p>
+          </div>
+          <ul id="lista-alunos-aprovados" class="lista-limpa"></ul>
+          <div id="form-criar-plano-container" style="display:none;" class="form-plano">
+            <h4>Criar Plano de Treino para: <span id="nome-aluno-plano"></span></h4>
+            <form id="form-criar-plano">
+              <label for="plano-descricao-geral">Descrição Geral do Plano:</label>
+              <textarea id="plano-descricao-geral" rows="3" placeholder="Ex: Foco em hipertrofia, 3x semana..."></textarea>
+              
+              <div id="exercicios-container">
+                <!-- Exercícios serão adicionados aqui dinamicamente -->
+              </div>
+              <button type="button" id="btn-add-exercicio" class="btn-secundario">➕ Adicionar Exercício</button>
+              
+              <div class="form-actions">
+                <button type="submit" class="btn-sucesso">Salvar Plano</button>
+                <button type="button" class="btn-secundario" id="btn-cancelar-plano">Cancelar</button>
+              </div>
+            </form>
+            <div id="feedback-plano-form" class="feedback-msg"></div>
+          </div>
+        </div>
+
+        <div class="instrutor-secao" id="planos-existentes-section">
+          <div class="secao-header">
+            <h3>📝 Planos Existentes</h3>
+            <p class="secao-descricao">Gerencie os planos de treino dos seus alunos</p>
+          </div>
+          <ul id="lista-planos-existentes" class="lista-limpa"></ul>
+          <div id="form-editar-plano-container" style="display:none;" class="form-plano">
+            <h4>Editar Plano de Treino para: <span id="nome-aluno-editar-plano"></span></h4>
+            <form id="form-editar-plano">
+              <input type="hidden" id="editar-plano-aluno-id" />
+              <label for="editar-plano-descricao-geral">Descrição Geral do Plano:</label>
+              <textarea id="editar-plano-descricao-geral" rows="3"></textarea>
+              
+              <div id="editar-exercicios-container">
+                <!-- Exercícios serão adicionados aqui dinamicamente -->
+              </div>
+              <button type="button" id="btn-add-exercicio-editar" class="btn-secundario">➕ Adicionar Exercício</button>
+              
+              <div class="form-actions">
+                <button type="submit" class="btn-sucesso">Atualizar Plano</button>
+                <button type="button" class="btn-secundario" id="btn-cancelar-editar-plano">Cancelar</button>
+              </div>
+            </form>
+            <div id="feedback-editar-plano-form" class="feedback-msg"></div>
+          </div>
+        </div>
+
+        <button id="btn-logout-instrutor" class="logout-btn">🚪 Sair</button>
+      </div>
+
+      <button id="btn-logout-aluno" class="logout-btn">🚪 Sair</button>
+    </div>
+    <div class="toast-container"></div>
+  </section>
+
+  <!-- Modais -->
+  <div id="modal-confirmacao" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Confirmação</h2>
+      <p id="modal-confirmacao-mensagem"></p>
+      <button id="modal-confirmacao-sim">Sim</button>
+      <button id="modal-confirmacao-nao">Não</button>
+    </div>
+  </div>
+
+  <div id="modal-exercicio" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Adicionar Exercício</h2>
+      <form id="form-add-exercicio-modal">
+        <label for="modal-grupo-muscular">Grupo Muscular:</label>
+        <select id="modal-grupo-muscular" required>
+          <option value="">Selecione um grupo</option>
+          <option value="pernas">Pernas</option>
+          <option value="gluteos">Glúteos</option>
+          <option value="peitoral">Peitoral</option>
+          <option value="bicepsAntebraco">Bíceps/Antebraço</option>
+          <option value="dorsais">Dorsais (Costas)</option>
+          <option value="deltoides">Deltóides (Ombros)</option>
+          <option value="triceps">Tríceps</option>
+          <option value="abdominais">Abdominais</option>
+        </select>
+        <label for="modal-nome-exercicio">Nome do Exercício:</label>
+        <select id="modal-nome-exercicio" required>
+          <option value="">Selecione um exercício</option>
+        </select>
+        <label for="modal-series">Séries:</label>
+        <input type="number" id="modal-series" required min="1" value="3" />
+        <label for="modal-repeticoes">Repetições:</label>
+        <input type="text" id="modal-repeticoes" required placeholder="Ex: 8-12 ou Falha" value="8-12" />
+        <label for="modal-carga">Carga (kg):</label>
+        <input type="text" id="modal-carga" placeholder="Ex: 20kg ou Peso Corporal" value="20kg" />
+        <label for="modal-observacoes">Observações:</label>
+        <input type="text" id="modal-observacoes" placeholder="Ex: Com drop-set" />
+        <button type="submit">Adicionar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-editar-exercicio" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Editar Exercício</h2>
+      <form id="form-editar-exercicio-modal">
+        <input type="hidden" id="editar-modal-exercicio-index" />
+        <label for="editar-modal-grupo-muscular">Grupo Muscular:</label>
+        <select id="editar-modal-grupo-muscular" required>
+          <option value="">Selecione um grupo</option>
+          <option value="pernas">Pernas</option>
+          <option value="gluteos">Glúteos</option>
+          <option value="peitoral">Peitoral</option>
+          <option value="bicepsAntebraco">Bíceps/Antebraço</option>
+          <option value="dorsais">Dorsais (Costas)</option>
+          <option value="deltoides">Deltóides (Ombros)</option>
+          <option value="triceps">Tríceps</option>
+          <option value="abdominais">Abdominais</option>
+        </select>
+        <label for="editar-modal-nome-exercicio">Nome do Exercício:</label>
+        <select id="editar-modal-nome-exercicio" required>
+          <option value="">Selecione um exercício</option>
+        </select>
+        <label for="editar-modal-series">Séries:</label>
+        <input type="number" id="editar-modal-series" required min="1" />
+        <label for="editar-modal-repeticoes">Repetições:</label>
+        <input type="text" id="editar-modal-repeticoes" required />
+        <label for="editar-modal-carga">Carga (kg):</label>
+        <input type="text" id="editar-modal-carga" />
+        <label for="editar-modal-observacoes">Observações:</label>
+        <input type="text" id="editar-modal-observacoes" />
+        <button type="submit">Salvar Edição</button>
+      </form>
+    </div>
+  </div>
+
+
+</main>
+
+<footer>
+  <p>&copy; 2023 Academia Unifev. Todos os direitos reservados. Desenvolvido por <a href="https://www.unifev.edu.br" target="_blank">UNIFEV</a>.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
